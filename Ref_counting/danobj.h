@@ -1,5 +1,5 @@
 #include <stdbool.h>
-
+#include <stddef.h>
 
 typedef struct DanObj dan_obj_t;
 
@@ -34,7 +34,7 @@ typedef union DanObjData{
 typedef struct DanObj{
   dan_obj_kind_t kind;
   dan_obj_data_t data;  
-  
+  int refcount;
 } dan_obj_t;
 
 dan_obj_t *new_dan_integer(int value);
@@ -50,3 +50,7 @@ bool dan_array_set(dan_obj_t *array, size_t idx,dan_obj_t *value);
 dan_obj_t *dan_array_get(dan_obj_t *array, size_t idx);
 int dan_length(dan_obj_t *obj);
 dan_obj_t *dan_add(dan_obj_t *a, dan_obj_t *b);
+dan_obj_t *new_dan_obj();
+void refcount_inc(dan_obj_t *obj);
+void refcount_dec(dan_obj_t *obj);
+void refcount_free(dan_obj_t *obj);
