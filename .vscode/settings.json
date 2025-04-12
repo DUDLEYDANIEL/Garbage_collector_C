@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "danobj.h": "c",
+        "stdbool.h": "c"
+    }
+}

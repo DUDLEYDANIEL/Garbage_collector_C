@@ -1,6 +1,7 @@
 #pragma once
+
 #include <stdbool.h>
-#include <stddef.h>
+#include "vm.h"
 
 typedef struct VirtualMachine vm_t;
 typedef struct DanObj dan_obj_t;
@@ -36,7 +37,7 @@ typedef union DanObjData{
 typedef struct DanObj{
   dan_obj_kind_t kind;
   dan_obj_data_t data;  
-  
+  bool isMarked;
 } dan_obj_t;
 
 dan_obj_t *new_dan_integer(int value);
@@ -52,3 +53,4 @@ bool dan_array_set(dan_obj_t *array, size_t idx,dan_obj_t *value);
 dan_obj_t *dan_array_get(dan_obj_t *array, size_t idx);
 int dan_length(dan_obj_t *obj);
 dan_obj_t *dan_add(dan_obj_t *a, dan_obj_t *b);
+dan_obj_t *new_dan_obj(vm_t *vm);
